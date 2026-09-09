@@ -1,0 +1,107 @@
+export const contact = {
+  kicker: "Contact",
+  title: "Start a conversation.",
+  intro:
+    "Coaching, workshops, speaking, partnerships or a consultation — I'm open to a conversation with people building something serious in food.",
+  note: "Typical response within 24 hours. Email or LinkedIn for a first hello.",
+  help: [
+    {
+      title: "Speaking engagements",
+      body: "Keynotes and panels on healthcare innovation, entrepreneurship and scaling.",
+      meta: "30–60 min + Q&A · in person or virtual",
+      items: [
+        "Healthcare innovation & technology integration",
+        "Scaling healthcare businesses",
+        "NABH standards implementation",
+        "Entrepreneurship in the healthcare sector",
+        "Nutrition as medicine: patient-centred approaches",
+        "Building high-performance healthcare teams",
+        "Lessons from Shark Tank India",
+      ],
+    },
+    {
+      title: "Strategic partnerships",
+      body: "Collaboration with healthcare systems, technology companies and industry organisations.",
+      meta: "Focus: innovation, quality standards, technology, market expansion",
+      items: [
+        "Healthcare systems & hospitals",
+        "Medical equipment manufacturers",
+        "Healthcare technology companies",
+        "Nutrition & wellness brands",
+        "Healthcare real-estate developers",
+        "Medical education institutions",
+        "Government healthcare initiatives",
+        "International healthcare organisations",
+      ],
+    },
+    {
+      title: "Contract catering consultation",
+      body: "Expert guidance for facilities improving their food-service operations.",
+      meta: "On-site assessments · planning sessions · implementation support",
+      items: [
+        "Kitchen design & infrastructure planning",
+        "Menu development & nutritional planning",
+        "Quality-standards implementation (NABH)",
+        "Operational-efficiency optimisation",
+        "Staff training & development",
+        "Technology-integration strategies",
+        "Vendor management & procurement",
+        "Cost optimisation & budget planning",
+      ],
+    },
+    {
+      title: "Mentorship & advisory",
+      body: "Guidance for healthcare entrepreneurs and business leaders.",
+      meta: "1-on-1 · group workshops · ongoing advisory",
+      items: [
+        "Healthcare business development",
+        "Scaling operations effectively",
+        "Quality-management systems",
+        "Team building & leadership",
+        "Investor relations & funding",
+        "Market-entry strategies",
+        "Technology adoption",
+        "Regulatory compliance",
+      ],
+    },
+  ],
+  inquiryTypes: [
+    "Speaking engagement",
+    "Partnership opportunity",
+    "Consultation services",
+    "Mentorship / advisory",
+    "Media interview",
+    "General inquiry",
+  ],
+  budgets: [
+    "Under ₹50,000",
+    "₹50,000 – ₹1,00,000",
+    "₹1,00,000 – ₹2,50,000",
+    "₹2,50,000 – ₹5,00,000",
+    "Above ₹5,00,000",
+    "To be discussed",
+  ],
+  contactMethods: ["Email", "Phone call", "Video call", "In-person meeting"],
+  faqs: [
+    {
+      q: "What food-service solutions do you provide?",
+      a: "End-to-end contract food services — hospital kitchens, corporate cafeterias, institutional messes, café and restaurant setups — covering design, staffing, menus, compliance and daily operations.",
+    },
+    {
+      q: "How do you maintain hygiene and quality in hospital kitchens?",
+      a: "Protocols built beyond NABH standards, HACCP implementation, diet-service monitoring and regular audits — with a 100% audit-success record across operations.",
+    },
+    {
+      q: "Do you offer café design and setup solutions?",
+      a: "Yes — concept, site selection, kitchen layout, equipment, branding, menu engineering, staff training and franchise models, from a single outlet to multi-city chains.",
+    },
+    {
+      q: "Do you handle food operations for corporates and institutes?",
+      a: "Yes — employee cafeterias, executive dining, campus messes, hostel dining and event catering, with per-employee cost control and wellness programs.",
+    },
+    {
+      q: "What makes your services stand out?",
+      a: "Twenty years of operating experience, sector-specific methodology, a 95%+ client-retention rate, and coaching that transfers the operating system to your team.",
+    },
+  ],
+};

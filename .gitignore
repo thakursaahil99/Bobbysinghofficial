@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# project reference (local only)
+_ref/
+
+# local review artifacts
+_shots/
