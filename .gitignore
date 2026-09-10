@@ -45,3 +45,6 @@ _ref/
 
 # local review artifacts
 _shots/
+
+.vercel
+.env*
