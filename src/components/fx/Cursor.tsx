@@ -93,7 +93,7 @@ export function Cursor() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[95]"
+      className="pointer-events-none fixed inset-0 z-[200]"
       style={{ opacity: shown ? 1 : 0, transition: "opacity 0.25s ease" }}
     >
       <motion.div
