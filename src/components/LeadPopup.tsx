@@ -88,6 +88,7 @@ export function LeadPopup() {
             className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
             onClick={close}
             aria-hidden
+            data-cursor-invert
           />
           <motion.div
             ref={panelRef}

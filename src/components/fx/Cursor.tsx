@@ -48,7 +48,7 @@ export function Cursor() {
       const t = e.target as HTMLElement | null;
       const onLink = !!t?.closest(LINK_SEL);
       setMode(onLink ? "link" : t?.closest(TEXT_SEL) ? "text" : "idle");
-      setInvert(!!t?.closest("[data-cursor-invert]") && !onLink);
+      setInvert(!!t?.closest("[data-cursor-invert]"));
     };
     const leave = () => setShown(false);
     const enter = () => seen.current && setShown(true);
@@ -76,19 +76,23 @@ export function Cursor() {
   const press = down ? 0.82 : 1;
   const c = invert ? "255,255,255" : "26,23,32";
 
+  // opposite-colour halo so the cursor keeps contrast on any background
+  const halo = invert ? "0,0,0" : "255,255,255";
+  const dotShadow = `0 0 0 1px rgba(${halo},0.55), 0 1px 4px rgba(0,0,0,0.35)`;
+
   const dot =
     mode === "text"
       ? { width: 2, height: 22, borderRadius: 2, opacity: 1 }
       : mode === "link"
-        ? { width: 6, height: 6, borderRadius: 999, opacity: 0 }
-        : { width: 5, height: 5, borderRadius: 999, opacity: 1 };
+        ? { width: 5, height: 5, borderRadius: 999, opacity: 0.9 }
+        : { width: 7, height: 7, borderRadius: 999, opacity: 1 };
 
   const ring =
     mode === "text"
       ? { width: 0, height: 0, opacity: 0 }
       : mode === "link"
         ? { width: 44, height: 44, opacity: 1 }
-        : { width: 26, height: 26, opacity: 1 };
+        : { width: 28, height: 28, opacity: 1 };
 
   return (
     <div
@@ -98,7 +102,12 @@ export function Cursor() {
     >
       <motion.div
         className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
-        style={{ x: dotX, y: dotY, backgroundColor: `rgb(${c})` }}
+        style={{
+          x: dotX,
+          y: dotY,
+          backgroundColor: `rgb(${c})`,
+          boxShadow: dotShadow,
+        }}
         animate={{ ...dot, scale: press }}
         transition={{ type: "spring", stiffness: 500, damping: 30, mass: 0.4 }}
       />
@@ -107,7 +116,8 @@ export function Cursor() {
         style={{
           x: ringX,
           y: ringY,
-          border: `1.25px solid rgba(${c},${invert ? 0.6 : 0.42})`,
+          border: `1.5px solid rgba(${c},${invert ? 0.72 : 0.8})`,
+          boxShadow: `0 0 0 1px rgba(${halo},0.28)`,
         }}
         animate={{ ...ring, scale: press }}
         transition={{ type: "spring", stiffness: 340, damping: 26, mass: 0.5 }}

@@ -167,6 +167,7 @@ export default function IfoPage() {
               return (
                 <Reveal key={tr.name} delay={i * 80}>
                   <div
+                    data-cursor-invert={i === 0 || undefined}
                     className={cn(
                       "flex h-full flex-col gap-5 rounded-[22px] p-8 sm:p-10",
                       t.pane,
