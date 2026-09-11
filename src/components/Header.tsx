@@ -57,13 +57,16 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between px-gutter">
-        <Link href="/" className="flex shrink-0 flex-col gap-1 leading-none">
-          <span className="whitespace-nowrap font-display text-[1.05rem] font-semibold leading-none tracking-tight">
+        <Link
+          href="/"
+          className="group flex shrink-0 flex-col gap-1 leading-none"
+        >
+          <span className="whitespace-nowrap font-display text-[1.05rem] font-semibold leading-none tracking-tight transition-colors group-hover:text-red">
             Bobby Singh
           </span>
           <span
             className={cn(
-              "hidden whitespace-nowrap text-[0.6rem] font-medium uppercase leading-none tracking-[0.11em] sm:block",
+              "hidden whitespace-nowrap text-[0.6rem] font-medium uppercase leading-none tracking-[0.11em] transition-colors group-hover:text-red sm:block",
               onDark ? "text-cream/55" : "text-mute",
             )}
           >
