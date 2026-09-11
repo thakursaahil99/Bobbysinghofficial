@@ -16,7 +16,7 @@
   --color-plum-soft: #f0dbe0; /* berry chip fill */
   --color-ink: #1a1720; /* primary text (warm near-black) */
   --color-ink-2: #58525f; /* secondary text */
-  --color-mute: #938b97; /* tertiary / meta */
+  --color-mute: #6d6678; /* tertiary / meta (WCAG AA on paper/tint) */
   --color-line: rgba(26, 23, 32, 0.12);
   --color-line-soft: rgba(26, 23, 32, 0.06);
   --color-red: #d8352a; /* Red Bean accent */

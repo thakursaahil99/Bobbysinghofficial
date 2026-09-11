@@ -80,6 +80,7 @@ export function Header() {
             <div key={item.href} className="group relative">
               <Link
                 href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
                   "relative flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
                   onDark
@@ -193,6 +194,7 @@ export function Header() {
             <div key={item.href}>
               <Link
                 href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
                   "block py-2.5 text-lg font-medium",
                   isActive(item.href) ? "text-ink" : "text-ink-2",

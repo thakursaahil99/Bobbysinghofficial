@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { display, sans } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import { Header } from "@/components/Header";
@@ -72,6 +74,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
         </SmoothScroll>
         <LeadPopup />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
