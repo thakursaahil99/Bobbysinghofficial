@@ -81,11 +81,11 @@ export function Header() {
                   "relative flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
                   onDark
                     ? isActive(item.href)
-                      ? "text-cream"
-                      : "text-cream/65 hover:text-cream"
+                      ? "text-cream hover:text-red"
+                      : "text-cream/65 hover:text-red"
                     : isActive(item.href)
-                      ? "text-ink"
-                      : "text-ink-2 hover:text-ink",
+                      ? "text-ink hover:text-red"
+                      : "text-ink-2 hover:text-red",
                 )}
               >
                 {item.label}
@@ -118,7 +118,7 @@ export function Header() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block rounded-[10px] px-3 py-2 text-sm text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink"
+                        className="block rounded-[10px] px-3 py-2 text-sm text-ink-2 transition-colors hover:bg-paper-2 hover:text-red"
                       >
                         {child.label}
                       </Link>
