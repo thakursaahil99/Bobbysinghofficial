@@ -12,6 +12,8 @@ import { ClipImage } from "@/components/fx/ClipImage";
 import { ScrollText } from "@/components/fx/ScrollText";
 import { ShowcaseExpand } from "@/components/fx/ShowcaseExpand";
 import { SectorPanels } from "@/components/SectorPanels";
+import { Spotlight } from "@/components/fx/Spotlight";
+import { HorizontalSteps } from "@/components/fx/HorizontalSteps";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { Tilt } from "@/components/fx/Tilt";
 import { ArrowLink, CtaBlock } from "@/components/primitives";
@@ -116,6 +118,7 @@ export default function HomePage() {
           aria-hidden
           className="pointer-events-none absolute -right-24 -top-24 h-[36rem] w-[36rem] rounded-full bg-red/25 blur-[130px]"
         />
+        <Spotlight />
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46vw] max-w-[760px] lg:block">
           <Image
             src="/images/bobby-portrait.png"
@@ -201,6 +204,16 @@ export default function HomePage() {
             ))}
           </Reveal>
         </Container>
+
+        <div
+          aria-hidden
+          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.3em] text-cream/50 lg:flex"
+        >
+          Scroll
+          <span className="relative block h-12 w-px overflow-hidden bg-cream/15">
+            <span className="scroll-cue absolute inset-x-0 top-0 h-1/2 bg-red" />
+          </span>
+        </div>
       </section>
 
       {/* ---------------------------------------------------- ticker */}
@@ -441,44 +454,12 @@ export default function HomePage() {
       </section>
 
       {/* ---------------------------------------------------- engagement / process */}
-      <section className="mt-24">
-        <SectionHeading
-          index="04"
-          label="The engagement"
-          title="From first call to hand-over."
-          intro="A defined path — not an open-ended retainer. Every engagement is built to make itself unnecessary."
-        />
-        <Container className="mt-12">
-          <div className="relative grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            <div
-              aria-hidden
-              className="absolute inset-x-0 top-7 hidden h-px bg-line lg:block"
-            />
-            {engagement.map((s, i) => {
-              const a = accents[i % accents.length];
-              return (
-                <Reveal key={s.n} delay={i * 70} className="relative">
-                  <span
-                    className={cn(
-                      "relative z-10 flex h-14 w-14 items-center justify-center rounded-full font-display text-base font-semibold",
-                      a.chip,
-                    )}
-                  >
-                    {s.n}
-                  </span>
-                  <div className="mt-6 flex items-center gap-2.5">
-                    <Icon name={s.icon} className="h-5 w-5 text-red" />
-                    <h3 className="text-xl text-ink">{s.title}</h3>
-                  </div>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink-2">
-                    {s.body}
-                  </p>
-                </Reveal>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
+      <HorizontalSteps
+        eyebrow="04 · The engagement"
+        title="From first call to hand-over."
+        intro="A defined path — not an open-ended retainer. Every engagement is built to make itself unnecessary."
+        steps={engagement}
+      />
 
       {/* ---------------------------------------------------- media */}
       <section className="mt-24">

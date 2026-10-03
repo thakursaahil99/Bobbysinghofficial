@@ -134,8 +134,8 @@ export function CtaBlock({
                   className={cn(
                     "btn border-paper",
                     a.variant === "ghost"
-                      ? "bg-transparent text-paper hover:bg-paper hover:text-ink"
-                      : "bg-paper text-ink hover:bg-red hover:border-red hover:text-white",
+                      ? "bg-transparent text-paper [--sweep:var(--color-paper)] hover:text-ink"
+                      : "bg-paper text-ink [--sweep:var(--color-red)] hover:border-red hover:text-white",
                   )}
                 >
                   {a.label}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { nav, site } from "@/lib/site";
 import { Magnetic } from "@/components/fx/Magnetic";
+import { Reveal } from "@/components/Reveal";
 
 export function Footer() {
   return (
@@ -120,6 +121,16 @@ export function Footer() {
             </Link>
           </div>
         </div>
+
+        {/* signature wordmark */}
+        <Reveal>
+          <p
+            aria-hidden
+            className="select-none whitespace-nowrap pb-6 font-display text-[clamp(2.6rem,14.6vw,13.2rem)] font-medium leading-[1] tracking-[-0.065em] text-ink"
+          >
+            Bobby Singh<span className="text-red">.</span>
+          </p>
+        </Reveal>
       </div>
     </footer>
   );
