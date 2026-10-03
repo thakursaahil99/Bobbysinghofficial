@@ -27,7 +27,7 @@ export function SectionHeading({
           <SplitText
             as="h2"
             text={title}
-            className="display max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] text-ink"
+            className="display max-w-[20ch] text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.02] text-ink"
           />
         )}
         {intro && (

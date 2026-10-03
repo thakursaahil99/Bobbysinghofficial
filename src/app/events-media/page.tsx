@@ -15,12 +15,7 @@ export const metadata: Metadata = {
     "Workshops, keynotes, podcast appearances and media featuring Bobby Singh on hospital kitchens, café businesses and the contract-food industry.",
 };
 
-const speakTone = [
-  "bg-red text-white",
-  "bg-forest text-cream",
-  "bg-gold text-white",
-  "bg-plum text-white",
-];
+const speakTone = ["text-red", "text-forest", "text-gold", "text-plum"];
 
 export default function EventsPage() {
   return (
@@ -55,39 +50,56 @@ export default function EventsPage() {
           label="Speaking engagements"
           title="Keynotes and industry events."
         />
-        <Container className="mt-10">
-          <div className="grid gap-4 md:grid-cols-3">
-            {events.speaking.map((s, i) => (
-              <Reveal key={s.title} delay={(i % 3) * 60}>
-                <div className="card lift flex h-full flex-col gap-4 p-7">
-                  <span
-                    className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-xl",
-                      speakTone[i % speakTone.length],
+        <Container className="mt-12">
+          <ol className="border-t border-line">
+            {events.speaking.map((s, i) => {
+              const [d, m, y] = s.date.split(" ");
+              return (
+                <Reveal
+                  as="li"
+                  key={s.title}
+                  delay={i * 60}
+                  className="group grid gap-5 border-b border-line py-8 transition-colors duration-300 hover:bg-paper-2/70 md:grid-cols-[170px_1fr_240px] md:gap-10 md:py-10"
+                >
+                  <div className="flex items-baseline gap-3 md:block">
+                    <p
+                      className={cn(
+                        "font-display text-[clamp(1.8rem,3vw,2.6rem)] font-medium leading-none",
+                        speakTone[i % speakTone.length],
+                      )}
+                    >
+                      {y ? `${d} ${m.slice(0, 3)}` : s.date}
+                    </p>
+                    {y && (
+                      <p className="text-sm font-medium text-mute md:mt-2">{y}</p>
                     )}
-                  >
-                    <Icon name="calendar" className="h-5 w-5" />
-                  </span>
-                  <h3 className="text-lg text-ink">{s.title}</h3>
-                  <p className="text-sm leading-relaxed text-ink-2">{s.topic}</p>
-                  <dl className="mt-auto space-y-1.5 border-t border-line pt-4 text-sm">
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-mute">Venue</dt>
-                      <dd className="text-right text-ink-2">{s.venue}</dd>
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-[clamp(1.2rem,2.2vw,1.65rem)] text-ink transition-transform duration-300 group-hover:translate-x-1">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 max-w-lg text-base leading-relaxed text-ink-2">
+                      {s.topic}
+                    </p>
+                  </div>
+                  <dl className="grid grid-cols-2 gap-4 text-sm md:grid-cols-1 md:gap-3">
+                    <div>
+                      <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-mute">
+                        Venue
+                      </dt>
+                      <dd className="mt-1 text-ink">{s.venue}</dd>
                     </div>
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-mute">Date</dt>
-                      <dd className="text-right text-ink-2">{s.date}</dd>
-                    </div>
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-mute">Audience</dt>
-                      <dd className="text-right text-ink-2">{s.audience}</dd>
+                    <div>
+                      <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-mute">
+                        Audience
+                      </dt>
+                      <dd className="mt-1 text-ink">{s.audience}</dd>
                     </div>
                   </dl>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+                </Reveal>
+              );
+            })}
+          </ol>
         </Container>
       </section>
 
@@ -130,34 +142,57 @@ export default function EventsPage() {
 
       {/* podcast */}
       <section className="mt-24">
-        <SectionHeading index="04" label="Podcast" />
+        <SectionHeading index="04" label="Podcast" title="On the mic." />
         <Container className="mt-10">
-          <Reveal className="flex flex-col gap-6 rounded-[20px] bg-tint p-8 sm:p-10 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-start gap-4">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-plum text-white">
-                <Icon name="mentor" className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mute">
-                  {events.podcast.show}
-                </p>
-                <h3 className="mt-2 max-w-[24ch] font-display text-2xl text-ink">
-                  {events.podcast.title}
-                </h3>
-                <p className="mt-2 text-sm text-ink-2">
-                  {events.podcast.date} · {events.podcast.length} ·{" "}
-                  {events.podcast.platforms}
-                </p>
-              </div>
-            </div>
-            <a
-              href={events.podcast.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-solid shrink-0"
+          <Reveal>
+            <div
+              data-cursor-invert
+              className="relative flex flex-col gap-8 overflow-hidden rounded-[24px] bg-ink p-8 text-cream sm:p-12 md:flex-row md:items-end md:justify-between"
             >
-              Listen now
-            </a>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -left-16 -top-20 h-72 w-72 rounded-full bg-plum/40 blur-3xl"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-red/25 blur-3xl"
+              />
+              <div className="relative flex items-start gap-5">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-plum text-white">
+                  <Icon name="megaphone" className="h-6 w-6" />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-red-soft">
+                    {events.podcast.show}
+                  </p>
+                  <h3 className="mt-3 max-w-[22ch] font-display text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] text-cream">
+                    {events.podcast.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-cream/65">
+                    {events.podcast.date} · {events.podcast.length} ·{" "}
+                    {events.podcast.platforms}
+                  </p>
+                </div>
+              </div>
+              <a
+                href={events.podcast.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor
+                className="btn btn-accent relative shrink-0 self-start md:self-auto"
+              >
+                Listen now
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden>
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
           </Reveal>
         </Container>
       </section>

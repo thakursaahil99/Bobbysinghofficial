@@ -51,6 +51,7 @@ const awardTone = [
   "bg-gold text-white",
   "bg-plum text-white",
 ];
+const awardText = ["text-red", "text-forest", "text-gold", "text-plum"];
 
 export default function AchievementsPage() {
   return (
@@ -64,11 +65,13 @@ export default function AchievementsPage() {
       <Container className="mt-10">
         <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {facts.map((f) => (
-            <div key={f.k} className="card flex flex-col gap-1.5 p-5">
+            <div key={f.k} className="card flex flex-col gap-2 p-6">
               <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-mute">
                 {f.k}
               </dt>
-              <dd className="text-sm text-ink">{f.v}</dd>
+              <dd className="font-display text-lg font-medium leading-snug text-ink">
+                {f.v}
+              </dd>
             </div>
           ))}
         </dl>
@@ -76,24 +79,54 @@ export default function AchievementsPage() {
 
       {/* awards */}
       <section className="mt-24">
-        <SectionHeading index="01" label="Awards & recognition" />
-        <Container className="mt-10">
-          <ol className="grid gap-4 sm:grid-cols-2">
-            {awards.map((a, i) => (
-              <Reveal key={a} delay={(i % 2) * 60}>
-                <li className="card lift flex h-full items-start gap-4 p-6">
+        <SectionHeading
+          index="01"
+          label="Awards & recognition"
+          title="Recognised by the industry."
+        />
+        <Container className="mt-12">
+          <ol className="border-t border-line">
+            {awards.map((a, i) => {
+              const [title, org = ""] = a.split(" — ");
+              const year = org.match(/\d{4}/)?.[0] ?? a.match(/\d{4}/)?.[0];
+              const orgName = org.replace(/,?\s*\d{4}\s*$/, "").trim();
+              return (
+                <Reveal
+                  as="li"
+                  key={a}
+                  delay={(i % 4) * 60}
+                  className="group grid grid-cols-[auto_1fr] items-center gap-5 border-b border-line py-7 transition-colors duration-300 hover:bg-paper-2/70 sm:grid-cols-[120px_auto_1fr] sm:gap-8"
+                >
                   <span
                     className={cn(
-                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl",
+                      "hidden font-display text-[clamp(1.8rem,3vw,2.6rem)] font-medium leading-none sm:block",
+                      awardText[i % awardText.length],
+                    )}
+                  >
+                    {year}
+                  </span>
+                  <span
+                    className={cn(
+                      "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl",
                       awardTone[i % awardTone.length],
                     )}
                   >
                     <Icon name="award" className="h-5 w-5" />
                   </span>
-                  <p className="text-base leading-snug text-ink">{a}</p>
-                </li>
-              </Reveal>
-            ))}
+                  <div className="min-w-0">
+                    <h3 className="text-[clamp(1.15rem,2.2vw,1.6rem)] leading-snug text-ink transition-transform duration-300 group-hover:translate-x-1">
+                      {title}
+                    </h3>
+                    {(orgName || year) && (
+                      <p className="mt-1.5 text-sm text-mute">
+                        {orgName}
+                        {year && <span className="sm:hidden"> · {year}</span>}
+                      </p>
+                    )}
+                  </div>
+                </Reveal>
+              );
+            })}
           </ol>
         </Container>
       </section>
@@ -111,12 +144,18 @@ export default function AchievementsPage() {
               <Reveal
                 key={src}
                 delay={(i % 3) * 60}
-                className={i === 0 ? "sm:col-span-2 sm:row-span-2" : ""}
+                className={cn(
+                  i === 0 && "sm:col-span-2 sm:row-span-2",
+                  i === gallery.length - 1 && gallery.length % 3 === 2 && "lg:col-span-2",
+                )}
               >
                 <div
                   className={cn(
                     "group relative w-full overflow-hidden rounded-[16px] border border-line",
                     i === 0 ? "aspect-[16/10]" : "aspect-[4/3]",
+                    i === gallery.length - 1 &&
+                      gallery.length % 3 === 2 &&
+                      "lg:aspect-auto lg:h-full",
                   )}
                 >
                   <Image
@@ -135,7 +174,11 @@ export default function AchievementsPage() {
 
       {/* big numbers */}
       <section className="mt-24">
-        <SectionHeading index="03" label="By the numbers" />
+        <SectionHeading
+          index="03"
+          label="By the numbers"
+          title="Two decades, in figures."
+        />
         <div className="mt-6 px-gutter">
           <Container className="rounded-[20px] bg-tint px-6 sm:px-10">
             <StatRow items={bigNumbers} className="!border-transparent" />
