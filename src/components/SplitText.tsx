@@ -42,7 +42,7 @@ export function SplitText({
       custom: stagger,
       initial: "hidden",
       whileInView: "show",
-      viewport: { once: true, margin: "0px 0px -8% 0px" },
+      viewport: { once: false, margin: "0px 0px -8% 0px" },
     },
     words.map((w, i) => (
       <span

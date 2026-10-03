@@ -50,7 +50,7 @@ export function ClipImage({
           : { clipPath: `inset(16% 14% 16% 14% round ${radius}px)` }
       }
       whileInView={{ clipPath: `inset(0% 0% 0% 0% round ${radius}px)` }}
-      viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+      viewport={{ once: false, margin: "0px 0px -15% 0px" }}
       transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.div
@@ -58,7 +58,7 @@ export function ClipImage({
         style={reduce ? undefined : { y: drift }}
         initial={reduce ? false : { scale: 1.25 }}
         whileInView={{ scale: 1 }}
-        viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+        viewport={{ once: false, margin: "0px 0px -15% 0px" }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <Image

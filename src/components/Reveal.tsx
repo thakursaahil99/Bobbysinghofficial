@@ -40,7 +40,7 @@ export function Reveal({
       variants={variants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+      viewport={{ once: false, margin: "0px 0px -12% 0px" }}
       transition={{ delay: delay / 1000 }}
     >
       {children}

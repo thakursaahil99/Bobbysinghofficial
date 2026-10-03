@@ -6,7 +6,8 @@ import { useInView, animate } from "motion/react";
 /** Splits "1,200+" into prefix-number-suffix and counts the number up in view. */
 export function CountUp({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
+  // replays every time it scrolls back into view
+  const inView = useInView(ref, { margin: "0px 0px -12% 0px" });
 
   const parsed = useMemo(() => {
     const m = value.match(/^(\D*)([\d,.]+)(.*)$/);
@@ -24,7 +25,12 @@ export function CountUp({ value }: { value: string }) {
   );
 
   useEffect(() => {
-    if (!parsed || !inView) return;
+    if (!parsed) return;
+    if (!inView) {
+      // reset off-screen so the count-up plays again on return
+      setDisplay(`${parsed.prefix}0${parsed.suffix}`);
+      return;
+    }
     const controls = animate(0, parsed.target, {
       duration: 1.3,
       ease: [0.16, 1, 0.3, 1],
