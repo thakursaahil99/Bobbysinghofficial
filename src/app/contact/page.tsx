@@ -43,42 +43,54 @@ export default function ContactPage() {
           label="How I can help"
           title="Ways to work together."
         />
-        <Container className="mt-10">
-          <div className="grid gap-4 md:grid-cols-2">
+        <Container className="mt-12">
+          <ol className="border-t border-line">
             {contact.help.map((h, i) => (
-              <Reveal key={h.title} delay={(i % 2) * 60}>
-                <div className="card lift flex h-full flex-col gap-4 p-8">
-                  <span
-                    className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-xl",
-                      helpTone[i % helpTone.length],
-                    )}
-                  >
-                    <Icon
-                      name={helpIcons[i % helpIcons.length]}
-                      className="h-5 w-5"
-                    />
-                  </span>
-                  <h3 className="text-xl text-ink">{h.title}</h3>
-                  <p className="text-sm leading-relaxed text-ink-2">{h.body}</p>
-                  <ul className="space-y-2 border-t border-line pt-4 text-sm text-ink-2">
-                    {h.items.map((it) => (
-                      <li key={it} className="flex gap-2.5">
-                        <Icon
-                          name="check"
-                          className="mt-0.5 h-4 w-4 shrink-0 text-red"
-                        />
-                        {it}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-auto pt-4 text-xs font-medium uppercase tracking-[0.1em] text-mute">
+              <Reveal
+                as="li"
+                key={h.title}
+                delay={(i % 4) * 60}
+                className="grid gap-6 border-b border-line py-9 lg:grid-cols-[auto_1fr_1.1fr] lg:gap-12 lg:py-12"
+              >
+                <span
+                  className={cn(
+                    "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl",
+                    helpTone[i % helpTone.length],
+                  )}
+                >
+                  <Icon
+                    name={helpIcons[i % helpIcons.length]}
+                    className="h-6 w-6"
+                  />
+                </span>
+                <div>
+                  <p className="font-display text-sm text-mute">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-2 text-[clamp(1.4rem,2.6vw,2rem)] text-ink">
+                    {h.title}
+                  </h3>
+                  <p className="mt-3 max-w-md text-base leading-relaxed text-ink-2">
+                    {h.body}
+                  </p>
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-mute">
                     {h.meta}
                   </p>
                 </div>
+                <ul className="flex flex-wrap content-start gap-2">
+                  {h.items.map((it) => (
+                    <li
+                      key={it}
+                      className="flex items-center gap-2 rounded-full border border-line bg-card px-3.5 py-1.5 text-sm text-ink-2"
+                    >
+                      <Icon name="check" className="h-3.5 w-3.5 text-red" />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </Container>
       </section>
 

@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoCard } from "@/components/VideoCard";
+import { ScrollText } from "@/components/fx/ScrollText";
 import { Icon } from "@/components/Icon";
 import { cn } from "@/lib/cn";
 
@@ -111,9 +112,12 @@ export default function EventsPage() {
               <span className="rule-red" />
               Leadership philosophy
             </p>
-            <blockquote className="mt-8 max-w-[28ch] font-display text-[clamp(1.9rem,4.4vw,3.4rem)] font-medium leading-[1.12] text-cream">
-              &ldquo;{events.philosophy}&rdquo;
-            </blockquote>
+            <ScrollText
+              as="blockquote"
+              text={`“${events.philosophy}”`}
+              dim={0.22}
+              className="mt-8 max-w-[26ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-medium leading-[1.1] text-cream"
+            />
           </Reveal>
         </Container>
       </section>

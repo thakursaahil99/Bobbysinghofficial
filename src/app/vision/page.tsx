@@ -5,7 +5,9 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureList, ChipList } from "@/components/FeatureCard";
-import { ParallaxImage } from "@/components/fx/Parallax";
+import { ClipImage } from "@/components/fx/ClipImage";
+import { ScrollText } from "@/components/fx/ScrollText";
+import { ShowcaseExpand } from "@/components/fx/ShowcaseExpand";
 import { StatRow } from "@/components/primitives";
 import { home } from "@/content/home";
 
@@ -50,15 +52,12 @@ export default function VisionPage() {
       {/* story */}
       <Container className="mt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal>
-            <ParallaxImage
-              src="/images/bobby-stage-bw.png"
-              alt="Bobby Singh speaking to a room of operators"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="aspect-[4/5] w-full rounded-[20px]"
-              imgClassName="grayscale"
-            />
-          </Reveal>
+          <ClipImage
+            src="/images/bobby-stage-bw.png"
+            alt="Bobby Singh speaking to a room of operators"
+            className="aspect-[4/5] w-full"
+            imgClassName="grayscale"
+          />
           <Reveal delay={80}>
             <p className="eyebrow flex items-center gap-3">
               <span className="rule-red" />
@@ -97,45 +96,17 @@ export default function VisionPage() {
       </section>
 
       {/* shark tank */}
-      <section className="mt-28 px-gutter">
-        <Container
-          data-cursor-invert
-          className="overflow-hidden rounded-[24px] bg-forest text-cream lg:grid lg:grid-cols-2"
-        >
-          <div className="relative min-h-[320px] lg:min-h-[520px]">
-            <ParallaxImage
-              src="/images/bobby-sharktank.png"
-              alt="Bobby Singh — Shark Tank India"
-              sizes="(max-width: 1024px) 100vw, 720px"
-              className="h-full min-h-[320px] w-full lg:min-h-[520px]"
-            />
-          </div>
-          <div className="flex flex-col justify-center gap-6 p-8 sm:p-14">
-            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-red-soft">
-              <span className="rule-red" />
-              Shark Tank India
-            </p>
-            <h2 className="display text-[clamp(2rem,4vw,3.2rem)] text-cream">
-              The first of the industry on the tank.
-            </h2>
-            <p className="text-lg leading-relaxed text-cream/75">
-              {home.sharkTank.body}
-            </p>
-            <div>
-              <Link
-                href="/events-media"
-                data-cursor
-                className="inline-flex items-center gap-2 text-sm font-semibold text-cream hoverline"
-              >
-                Watch the highlights
-                <span aria-hidden className="text-red-soft">
-                  &rarr;
-                </span>
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <div className="mt-24">
+        <ShowcaseExpand
+          src="/images/bobby-sharktank.png"
+          alt="Bobby Singh — Shark Tank India"
+          kicker="Shark Tank India"
+          title="The first of the industry on the tank."
+          body={home.sharkTank.body}
+          link={{ href: "/events-media", label: "Watch the highlights" }}
+          imgPosition="center 40%"
+        />
+      </div>
 
       {/* philosophy quote */}
       <section className="mt-28 bg-tint py-24">
@@ -145,9 +116,11 @@ export default function VisionPage() {
               <span className="rule-red" />
               Leadership philosophy
             </p>
-            <blockquote className="mt-8 max-w-[24ch] font-display text-[clamp(2rem,4.6vw,3.6rem)] font-medium leading-[1.1] tracking-[-0.03em] text-ink before:text-red before:content-['\201C'] after:text-red after:content-['\201D']">
-              {philosophy}
-            </blockquote>
+            <ScrollText
+              as="blockquote"
+              text={`“${philosophy}”`}
+              className="mt-8 max-w-[24ch] font-display text-[clamp(2rem,4.6vw,3.6rem)] font-medium leading-[1.1] tracking-[-0.03em] text-ink"
+            />
           </Reveal>
         </Container>
       </section>

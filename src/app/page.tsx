@@ -8,6 +8,10 @@ import { Icon } from "@/components/Icon";
 import { SplitText } from "@/components/SplitText";
 import { Marquee } from "@/components/fx/Marquee";
 import { CountUp } from "@/components/fx/CountUp";
+import { ClipImage } from "@/components/fx/ClipImage";
+import { ScrollText } from "@/components/fx/ScrollText";
+import { ShowcaseExpand } from "@/components/fx/ShowcaseExpand";
+import { SectorPanels } from "@/components/SectorPanels";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { Tilt } from "@/components/fx/Tilt";
 import { ArrowLink, CtaBlock } from "@/components/primitives";
@@ -273,127 +277,111 @@ export default function HomePage() {
       </section>
 
       {/* ---------------------------------------------------- about */}
-      <section className="mt-24 bg-tint py-20">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
-          <Reveal className="overflow-hidden rounded-[20px]">
-            <div className="relative aspect-[5/6] w-full lg:aspect-[4/5]">
-              <Image
-                src="/images/bobby-stage-bw.png"
-                alt="Bobby Singh speaking to a room of entrepreneurs"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-[center_20%] grayscale"
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="eyebrow flex items-center gap-3">
-              <span className="rule-red" />
-              Meet Bobby Singh
-            </p>
-            <h2 className="display mt-5 text-[clamp(2rem,4.4vw,3.5rem)] text-ink">
-              India&apos;s leading business coach for contract-food entrepreneurs.
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-ink-2">
-              {home.vision.body}
-            </p>
-            <div className="mt-8">
-              <ArrowLink href="/vision">Read the full story</ArrowLink>
-            </div>
-          </Reveal>
+      <section className="mt-28">
+        <Container className="grid items-start gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+          <div className="relative lg:sticky lg:top-28">
+            <ClipImage
+              src="/images/bobby-stage-bw.png"
+              alt="Bobby Singh speaking to a room of entrepreneurs"
+              className="aspect-[4/5] w-full"
+              imgClassName="object-[center_20%] grayscale"
+            />
+            <Reveal
+              delay={500}
+              className="absolute -bottom-6 right-4 sm:-right-6"
+            >
+              <div className="card flex items-center gap-4 px-5 py-4 shadow-[var(--shadow-lift)]">
+                <span className="font-display text-4xl font-medium leading-none text-red">
+                  <CountUp value="20+" />
+                </span>
+                <span className="text-xs font-medium leading-tight text-ink-2">
+                  years running
+                  <br />
+                  contract kitchens
+                </span>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="lg:pt-8">
+            <Reveal>
+              <p className="eyebrow flex items-center gap-3">
+                <span className="rule-red" />
+                Meet Bobby Singh
+              </p>
+            </Reveal>
+            <ScrollText
+              as="h2"
+              text="Two decades running hospital, campus and corporate kitchens across India — and now coaching the operators who will build the next ones."
+              className="mt-6 font-display text-[clamp(1.9rem,3.6vw,3.1rem)] font-medium leading-[1.12] tracking-[-0.025em] text-ink"
+            />
+            <Reveal>
+              <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-2">
+                {home.vision.body}
+              </p>
+            </Reveal>
+            <Reveal>
+              <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8 sm:grid-cols-3">
+                {home.stats.slice(1, 4).map((s) => (
+                  <div key={s.label}>
+                    <dd className="font-display text-[clamp(1.8rem,3vw,2.4rem)] font-medium leading-none text-ink">
+                      <CountUp value={s.value} />
+                    </dd>
+                    <dt className="mt-2 text-xs uppercase tracking-[0.1em] text-mute">
+                      {s.label}
+                    </dt>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+            <Reveal>
+              <Link href="/vision" data-cursor className="btn btn-solid mt-10">
+                Read the full story
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden>
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
       {/* ---------------------------------------------------- shark tank */}
-      <section className="mt-24 px-gutter">
-        <Container data-cursor-invert className="overflow-hidden rounded-[24px] bg-forest text-cream lg:grid lg:grid-cols-2">
-          <div className="relative min-h-[320px] lg:min-h-full">
-            <Image
-              src="/images/bobby-sharktank.png"
-              alt="Bobby Singh — Shark Tank India"
-              fill
-              sizes="(max-width: 1024px) 100vw, 700px"
-              className="object-cover"
-            />
-          </div>
-          <div className="flex flex-col justify-center gap-5 p-8 sm:p-14">
-            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-red-soft">
-              <span className="rule-red" />
-              Shark Tank India
-            </p>
-            <h2 className="display text-[clamp(1.9rem,3.6vw,2.8rem)] text-cream">
-              A national stage for an industry that rarely gets one.
-            </h2>
-            <p className="text-lg leading-relaxed text-cream/75">
-              {home.sharkTank.body}
-            </p>
-            <div>
-              <Link
-                href="/events-media"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-cream hoverline"
-              >
-                Watch the highlights
-                <span aria-hidden className="text-red-soft">
-                  &rarr;
-                </span>
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <div className="mt-24">
+        <ShowcaseExpand
+          src="/images/bobby-sharktank.png"
+          alt="Bobby Singh — Shark Tank India"
+          kicker="Shark Tank India"
+          title="A national stage for an industry that rarely gets one."
+          body={home.sharkTank.body}
+          link={{ href: "/events-media", label: "Watch the highlights" }}
+          imgPosition="center 40%"
+        />
+      </div>
 
       {/* ---------------------------------------------------- consultancies */}
-      <section className="mt-24 bg-paper-2 py-20">
+      <section className="bg-paper-2 py-24">
         <SectionHeading
           index="02"
           label="Consultancies"
           title="Four sectors, one operating standard."
         />
         <Container className="mt-12">
-          <div className="grid gap-5 md:grid-cols-2">
-            {Object.values(consultancies).map((c, i) => (
-              <Reveal key={c.slug} delay={(i % 2) * 70}>
-                <Link
-                  href={`/consultancies/${c.slug}`}
-                  data-cursor="Explore"
-                  className="group relative block overflow-hidden rounded-[20px] bg-ink"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Image
-                      src={consultancyImages[c.slug]}
-                      alt={c.kicker}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 680px"
-                      className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
-                    />
-                    <span
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/5 transition-opacity duration-500 group-hover:opacity-95"
-                    />
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 text-cream sm:p-8">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-red-soft">
-                        {c.kicker}
-                      </p>
-                      <h3 className="mt-2 font-display text-[clamp(1.35rem,2.4vw,2rem)] font-medium leading-tight">
-                        {c.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-cream/65">
-                        {c.stats[0].value} {c.stats[0].label}
-                      </p>
-                    </div>
-                    <span
-                      aria-hidden
-                      className="mb-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cream/40 text-lg transition-colors duration-300 group-hover:border-red group-hover:bg-red group-hover:text-white"
-                    >
-                      &rarr;
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <SectorPanels
+            items={Object.values(consultancies).map((c) => ({
+              href: `/consultancies/${c.slug}`,
+              kicker: c.kicker,
+              title: c.title,
+              stat: `${c.stats[0].value} ${c.stats[0].label}`,
+              image: consultancyImages[c.slug],
+            }))}
+          />
         </Container>
       </section>
 

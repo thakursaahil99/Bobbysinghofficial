@@ -8,6 +8,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureList, ChipList } from "@/components/FeatureCard";
 import { ParallaxImage } from "@/components/fx/Parallax";
+import { ScrollText } from "@/components/fx/ScrollText";
 import { ContactStrip, StatRow } from "@/components/primitives";
 import { cn } from "@/lib/cn";
 import { consultancies } from "@/content/consultancies";
@@ -162,9 +163,12 @@ export default async function ConsultancyPage({
               <span className="rule-red" />
               The approach
             </p>
-            <blockquote className="mt-8 max-w-[24ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-medium leading-[1.1] text-cream before:text-red-soft before:content-['\201C'] after:text-red-soft after:content-['\201D']">
-              {c.statement}
-            </blockquote>
+            <ScrollText
+              as="blockquote"
+              text={`“${c.statement}”`}
+              dim={0.22}
+              className="mt-8 max-w-[24ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-medium leading-[1.1] text-cream"
+            />
           </Reveal>
         </Container>
       </section>
